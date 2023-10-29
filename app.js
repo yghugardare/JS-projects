@@ -11,6 +11,7 @@ console.log(navAnchortag);
 navAnchortag.forEach((aTag)=>{
     aTag.addEventListener('click',showNav);
 })
+/*--------------------------------------------------------------------------------------------------------*/
 // hanburger logic ends here
 // changing navbar color from section to other.
 // using scroll event
@@ -36,3 +37,79 @@ function activateNav(){
 }
 window.addEventListener('scroll',activateNav);
 // changing navbar color logic ends here
+/*--------------------------------------------------------------------------------------------------------*/
+// Notes app starts here
+// DOMContentLoaded event is commonly used in JavaScript to 
+// ensure that your code runs only after the HTML document has
+// been fully loaded, which is essential for web applications 
+// to prevent JavaScript from trying to access elements that don't yet exist 
+// in the DOM. 
+document.addEventListener('DOMContentLoaded',function(){
+    const notesForm = document.querySelector("#noteForm");
+    const noteInput = document.querySelector("#noteInput");
+    const viewNote = document.querySelector("#viewNotes");
+    // add notes
+    notesForm.addEventListener('submit',function(evt){
+        evt.preventDefault();
+        let noteText = noteInput.value;
+        console.log(noteText)
+        noteText.trim()!=="" ? addNoteToLocalStorage(noteText) :alert("Please Enter Something!") 
+        noteInput.value=""; 
+    });
+    function addNote(noteText){
+        const note = document.createElement('div');
+        note.classList.add('note');
+        note.innerHTML=`
+        <span>${noteText}</span>
+        <div class="action-buttons">
+        <button class="edit">✍️</button>
+        <button class="delete">🗑️</button>
+        </div>
+        `
+        viewNote.appendChild(note);
+        // we deleted note here
+        const delteBtn = note.querySelector('.delete');
+        delteBtn.addEventListener('click',()=>{
+            viewNote.removeChild(note);
+            updateLocalStorage();
+        });
+        // edit the note
+        const editBtn = note.querySelector(".edit");
+        editBtn.addEventListener('click', () => {
+            const noteText = note.querySelector('span');
+            const newText = prompt("Edit text: ", noteText.innerText);
+            if (newText !== null && newText != "") {
+                noteText.innerText = newText;
+                updateLocalStorage();
+            }
+        });
+        
+    };
+    function addNoteToLocalStorage(noteText){
+        const notes = getLocalStorageItem();
+        notes.push(noteText);
+        localStorage.setItem('notes',JSON.stringify(notes));
+        addNote(noteText);
+    }
+    function getLocalStorageItem(){
+        const storedNotes = localStorage.getItem('notes');
+        return storedNotes? JSON.parse(storedNotes):[];
+    }
+    function updateLocalStorage(){
+        // noteList is not an array but DOM nodeList
+        const noteList = document.querySelectorAll('.note span');
+        // convert noteList to array and store each spans text content
+        // to notes array
+        // 2nd way use Arrays.from(notes)
+        const notes = [...noteList].map(note=>note.textContent);
+        localStorage.setItem('notes',JSON.stringify(notes))
+    }
+    // display local storage items
+    function loadLocalStorageItems(){
+        const notes = getLocalStorageItem();
+        notes.forEach(note=>addNote(note));
+    }
+    loadLocalStorageItems();
+});
+// Notes app ends here
+/*--------------------------------------------------------------------------------------------------------*/

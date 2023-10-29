@@ -22,9 +22,19 @@
         </div>
     </nav>
     <!-- navbar ends -->
+    <!-- section for notes app -->
     <section id="notes">
-        <div class="toDoContainer">
-            <h1 class="h1">TO DO</h1>
+        <div class="notesContainer">
+            <h1>My notes</h1>
+            <!-- form for adding notes -->
+            <form id="noteForm">
+                <input type="text" name="nInp" id="noteInput" placeholder="Enter a new note" required>
+                <button>Add</button>
+            </form>
+            <!-- Display the existing notes -->
+            <div id="viewNotes">
+                <!-- Notes will be added here -->
+            </div>
         </div>
     </section>
     <section id="quiz">

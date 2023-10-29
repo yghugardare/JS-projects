@@ -1,3 +1,5 @@
 # JS projects
-- CRUD To do list 
+- Hamburger Navbar
+- change nav link for each section
+- CRUD Notes App with local storage
 - 
