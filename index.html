@@ -38,8 +38,39 @@
         </div>
     </section>
     <section id="quiz">
-        <div class="toDoContainer">
-            <h1 class="h1">TO DO1</h1>
+        <div class="quizContainer">
+            <div class="startQuiz">
+                <h1>Quiz App</h1>
+                <div class="settings">
+                    <label for="noOfQuestions">Enter Number of Questions</label>
+                    <select name="noQ" id="noOfQuestions">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="topic">Enter Topic</label>
+                    <select name="topics" id="topic">
+                        <option value="DSA">DSA</option>
+                        <option value="Web-Development">Web Development</option>
+                        <option value="Python">Python</option>
+                        <option value="DBMS">DBMS</option>
+                    </select>
+                    <label for="timer">Enter timer</label>
+                    <select name="timer" id="timer">
+                        <option value="20">20 seconds</option>
+                        <option value="30">30 seconds</option>
+                        <option value="50">50 seconds</option>
+                    </select>
+                    <label for="difficulty">Choose Difficulty</label>
+                    <select name="difficulty" id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <button class="btn">Start Quiz</button>
+            </div>
+            <div class="quizQna"></div>
+            <div class="finalResult"></div>
         </div>
     </section>
     <section id="movie">
