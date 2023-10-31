@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS-Projects</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -39,9 +46,9 @@
     </section>
     <section id="quiz">
         <div class="quizContainer">
-            <div class="startQuiz">
+            <div class="startQuiz ">
                 <h1>Quiz App</h1>
-                <div class="settings">
+                <form class="settings">
                     <label for="noOfQuestions">Enter Number of Questions</label>
                     <select name="noQ" id="noOfQuestions">
                         <option value="5">5</option>
@@ -52,13 +59,11 @@
                         <option value="DSA">DSA</option>
                         <option value="Web-Development">Web Development</option>
                         <option value="Python">Python</option>
-                        <option value="DBMS">DBMS</option>
                     </select>
                     <label for="timer">Enter timer</label>
                     <select name="timer" id="timer">
-                        <option value="20">20 seconds</option>
                         <option value="30">30 seconds</option>
-                        <option value="50">50 seconds</option>
+                        <option value="60">60 seconds</option>
                     </select>
                     <label for="difficulty">Choose Difficulty</label>
                     <select name="difficulty" id="difficulty">
@@ -66,11 +71,55 @@
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
-                </div>
-                <button class="btn">Start Quiz</button>
+                </form>
+                <button id="startBtn" class="btn">Start Quiz</button>
             </div>
-            <div class="quizQna"></div>
-            <div class="finalResult"></div>
+            <div class="quizQna hide">
+                <div class="timer">
+                    <div class="progress">
+                        <div class="progressBar"></div>
+                        <span class="progressText">60%</span>
+                    </div>
+                </div>
+                <div class="questions">
+                    <h2>Question 1 / 5</h2>
+                    <p>In the Rossini opera, what was??? Lorem ipsum dolorequatur!the lorem100 name of 'The Barber of Seville'?</p>
+                </div>
+                <div class="answers">
+                    <div class="ans">
+                        <span class="text">Answrer</span>
+                        <span class="checkbox">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <div class="ans selected wrong">
+                        <span class="text">Answrer</span>
+                        <span class="checkbox">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <div class="ans">
+                        <span class="text">Answrer</span>
+                        <span class="checkbox">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <div class="ans correct">
+                        <span class="text">Answrer</span>
+                        <span class="checkbox">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <button class="btn submit" disabled>Submit</button>
+                    <button class="btn next">Next</button>
+                </div>
+            </div>
+            <div class="finalResult hide">
+                <h1>Quiz Over🎊🎉</h1>
+                <p>Your Score: </p>
+                <h2><span class="your">0</span>/<span class="toatal">5</span></h2>
+                <button class="btn">Restart Quiz</button>
+            </div>
         </div>
     </section>
     <section id="movie">

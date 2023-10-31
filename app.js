@@ -1,3 +1,4 @@
+import { fiveQuizData,tenQuizData } from "./quizData";
 // hamburger nav icon design
 const menuBtn = document.querySelector('.hamburger');
 const navItems = document.querySelector('.navItems');
@@ -26,7 +27,7 @@ function activateNav(){
         let sectionStart = section.offsetTop;
         let curPosition = window.scrollY;
         
-        if (curPosition >= sectionStart && curPosition < sectionStart + sectionHeight){
+        if (curPosition >= sectionStart && curPosition <= sectionStart + sectionHeight-10){
             let sectionId = section.getAttribute('id');
             navAnchortag.forEach((aTag)=>{
                 aTag.classList.remove('active');
@@ -113,3 +114,12 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 // Notes app ends here
 /*--------------------------------------------------------------------------------------------------------*/
+// Quiz app logic starts here
+let noOfQuestionsValue = document.querySelector("#noOfQuestions");
+let topicName = document.querySelector("#topic");
+let time = document.querySelector("#timer");
+let difficultyValue = document.querySelector("#difficulty");
+let startBtn = document.querySelector("#startBtn");
+startBtn.addEventListener('click',()=>{
+    console.log(noOfQuestionsValue.value)
+})

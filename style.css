@@ -192,6 +192,9 @@ section{
 }
 /* Quiz section starts here */
 /* utitlity class*/
+.quizContainer>.hide{
+    display: none !important;
+}
 .btn{
     padding: 8px 10px;
     cursor: pointer;
@@ -207,6 +210,9 @@ section{
     background-color: var(--btnHoverColor);
     color: white;
 }
+
+
+/* utility class ends here */
 #quiz>.quizContainer{
     position:relative;
     top: 15vh;
@@ -218,6 +224,7 @@ section{
     row-gap: 15px;
     height: 100%;
     /* border: 2px solid salmon; */
+    
     max-width: 686px;
     margin: 0 auto;
 }
@@ -242,9 +249,179 @@ select{
     border-radius:5px ;
     font-weight: 600;
 }
+/* second quiz layout */
+.quizContainer>.quizQna{
+    display: grid;
+    place-items: center;
+
+    height: 85vh;
+    /* border: 1px solid lightcyan; */
+    max-width: 686px;
+    margin: 0 auto;
+    overflow-y:auto;
+    /* position: absolute; */
+}
+.timer{
+ width: 100%;
+ height: 40px; 
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ /* border: 1px solid red; */
+
+}
+.timer>.progress{
+    width: 100%;
+    height: 33px;
+    border-radius: 25px;
+    border: 2px solid gray;
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
+}
+.timer>.progress>.progressBar{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,var(--btnHoverColor),var(--btnColor));
+}
+.timer>.progress>.progressText{
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* question styling */
+.questions{
+    /* border:2px solid red; */
+    width: 100%;
+    max-height: 100px;
+
+}
+.questions>h2{
+    padding:0 10px;
+}
+.questions>p{
+    padding:2px 10px;
+    max-height: 70px;
+}
+/* answers stylings */
+.answers{
+    width: 100%;
+    min-height: 300px;
+    overflow-y:auto;
+    /* border: 3px solid green; */
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 20/4 = 5 */
+    row-gap: 5px;
+}
+.answers>.ans{
+    /* 240/4 = 60 */
+    min-height: 50px;
+    
+    border: 2px solid var(--btnColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.text{
+    padding: 0 10px;
+}
+.ans .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #3f4868;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  .ans .checkbox i {
+    color: indigo;
+    font-size: 10px;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .ans:hover:not(.checked) .checkbox,
+  .ans.selected .checkbox {
+    background-color: var(--btnColor);
+  }
+  .ans.selected .checkbox i {
+    opacity: 1;
+  }
+  .ans.correct {
+      border-color: #0cef2a;
+  }
+  .ans.wrong {
+    border-color: #fc3939;
+  }
+  .btn:disabled {
+    background: #576081;
+    cursor: not-allowed;
+  }
+  .btn.next {
+    display: none;
+  }
+  
+/* Final result logic */
+.quizContainer>.finalResult{
+    display: grid;
+    place-items: center;
+    height: 100%;
+    row-gap: 30px;
+    border: 2px solid sandybrown;
+    background-color: var(--navBgColor);
+    padding: 50px;
+    /* border: 1px solid lightcyan; */
+    max-width: 500px;
+    margin:60px auto;
+    overflow-y:auto;
+    /* position: absolute; */
+}
+
+/* responsive quiz container related work */
 @media all and (max-width:500px) {
     #quiz>.quizContainer{
         position:relative;
-        top: 10vh;
+        top : 10vh;
+    }
+    .quizContainer>.quizQna{
+        display: grid;
+        place-items: center;
+        row-gap: 0px;
+        height: 70vh;
+    }
+    .answers{
+        position: relative;
+        top: -6vh;
+    }
+    
+    .questions{
+        /* border:2px solid red; */
+        width: 100%;
+        height: 50px;
+        position: relative;
+        top: -6vh;
+    
+    }
+    .questions>h2{
+        padding:0 10px;
+    }
+    .questions>p{
+        padding:0px 10px;
+        height: 30px;
+    }
+    .timer{
+        width: 100%;
+        height: 20px; 
+    }
+    .quizContainer>.finalResult{
+        position: relative;
+        top: 7vh;
     }
 }
