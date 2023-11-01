@@ -46,9 +46,9 @@
     </section>
     <section id="quiz">
         <div class="quizContainer">
-            <div class="startQuiz ">
+            <form class="startQuiz ">
                 <h1>Quiz App</h1>
-                <form class="settings">
+                <div class="settings">
                     <label for="noOfQuestions">Enter Number of Questions</label>
                     <select name="noQ" id="noOfQuestions">
                         <option value="5">5</option>
@@ -71,9 +71,9 @@
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
-                </form>
+                </div>
                 <button id="startBtn" class="btn">Start Quiz</button>
-            </div>
+            </form>
             <div class="quizQna hide">
                 <div class="timer">
                     <div class="progress">
@@ -82,8 +82,8 @@
                     </div>
                 </div>
                 <div class="questions">
-                    <h2>Question 1 / 5</h2>
-                    <p>In the Rossini opera, what was??? Lorem ipsum dolorequatur!the lorem100 name of 'The Barber of Seville'?</p>
+                    <h2>Question <span class="currQ">1</span>/<span class="totalQ">5</span></h2>
+                    <p class="questionText">In the Rossini opera, what was??? Lorem ipsum dolorequatur!the lorem100 name of 'The Barber of Seville'?</p>
                 </div>
                 <div class="answers">
                     <div class="ans">
@@ -92,7 +92,7 @@
                             <i class="fas fa-check"></i>
                         </span>
                     </div>
-                    <div class="ans selected wrong">
+                    <div class="ans ">
                         <span class="text">Answrer</span>
                         <span class="checkbox">
                             <i class="fas fa-check"></i>
@@ -104,21 +104,21 @@
                             <i class="fas fa-check"></i>
                         </span>
                     </div>
-                    <div class="ans correct">
+                    <div class="ans">
                         <span class="text">Answrer</span>
                         <span class="checkbox">
                             <i class="fas fa-check"></i>
                         </span>
                     </div>
-                    <button class="btn submit" disabled>Submit</button>
-                    <button class="btn next">Next</button>
+                    <button id="answerSubmitBtn" class="btn submit" disabled>Submit</button>
+                    <button id="nextQuestionBtn" class="btn next">Next</button>
                 </div>
             </div>
             <div class="finalResult hide">
                 <h1>Quiz Over🎊🎉</h1>
                 <p>Your Score: </p>
-                <h2><span class="your">0</span>/<span class="toatal">5</span></h2>
-                <button class="btn">Restart Quiz</button>
+                <h2 class="yourScore"></h2>
+                <button id="restartBtn" class="btn">Restart Quiz</button>
             </div>
         </div>
     </section>
@@ -139,5 +139,6 @@
     </section>
     
     <script src="app.js"></script>
+
 </body>
 </html>
