@@ -14,9 +14,13 @@ name = “ram”;  //resassigned
 const PI = 3.1423;
 PI = “4”;  //error
 
+## Stack vs Heap Memory
+
 - All primitive data types(like number,string,boolean,null,bigint,symbol,undefuned) in JS are stored in stack.
 
 - All non-primitive data types(like Objects,Map,Set,Arrays) in JS are stored in heap
+
+![image](https://github.com/yghugardare/JS-projects/assets/117991996/c2bb608b-7a84-47af-bc46-26fe680d9061)
 
 ![image](https://github.com/yghugardare/JS-projects/assets/117991996/b5f70a83-ab05-4664-82e9-dc5a6760c71f)
 
