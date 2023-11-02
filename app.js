@@ -519,6 +519,92 @@ function fillQnaOneByOne(quizData,currQ,totalQ){
         `
     })
 }
+function answerSubmitFunction(selectedOptions,currentQnA,marks,currQu){
+
+    let selectedOption = selectedOptions[selectedOptions.length-1];
+    console.log("Insdie function", selectedOption)
+    // console.log(typeof selectedOption)
+    // getting the answer btn
+    let answerSubmitBtn = document.querySelector('#answerSubmitBtn');
+    let nextQuestionBtn = document.querySelector("#nextQuestionBtn");
+    let answereBoxs = document.querySelectorAll(".ans");
+    answereBoxs[selectedOption].classList.add('checked');
+    if(selectedOption !== undefined){
+        answerSubmitBtn.removeAttribute('disabled');
+    }
+    // answer submisstion logic
+   let correctAnswer = currentQnA.correctAnswer;
+   let checkedOption = -1;
+    answerSubmitBtn.addEventListener("click", () => {
+        answerSubmitBtn.style.display = "none";
+        nextQuestionBtn.style.display = "block"; 
+        checkedOption = [...answereBoxs].findIndex(ansDiv=> ansDiv.classList.contains('checked'));
+        //  when all checks done hide the submit btn
+    // and show the next Btn
+          
+        console.log("in func now",selectedOption)
+        console.log("in func now",checkedOption)
+        console.log("curr",currQu, typeof currQu)
+        let key = currQu;
+        marks[key] = (selectedOption === correctAnswer)? 1 : 0;
+        if(checkedOption === correctAnswer){
+            answereBoxs[checkedOption].classList.remove('selected');
+            answereBoxs[checkedOption].classList.add('correct');
+        }
+        else{
+            
+            answereBoxs[checkedOption].classList.add('wrong');
+            answereBoxs[correctAnswer].classList.add('correct');
+            answereBoxs[checkedOption].classList.remove('selected');
+        }
+        
+        console.log("marks are",marks)
+        console.log("CheckedOption",checkedOption)
+    
+    
+
+    });
+    // selectedOption = undefined;
+}
+// // function to play audio when time is 3 sec
+// function playAudio(src){
+//     const audio = new Audio(src);
+//     audio.play();
+// }
+// // function to show progress on screen
+// function showTimeOnScreen(time){
+//     let progressBar = document.querySelector(".progressBar");
+//     let progressText = document.querySelector(".progressText");
+//     let timer = parseInt(time.value);
+//     let percent = (time/timer)*100;
+//     progressBar.style.width = `${percent}%`;
+//     progressText.innerText = ` ${time}`;
+// }
+// let startTiming;
+// function stopWork(answerSubmitBtn,nextQuestionBtn){
+//     clearInterval(startTiming);
+//             answerSubmitBtn.style.display = "none";
+//             nextQuestionBtn.style.display = "block"
+            
+// }
+
+// function startTimer(timer){
+//     let answerSubmitBtn = document.querySelector('#answerSubmitBtn');
+//     let nextQuestionBtn = document.querySelector("#nextQuestionBtn");
+//     let time  = parseInt(timer);
+//     startTiming = setInterval(()=>{
+//         if(time === 3){
+//             playAudio("countdown.mp3");
+//         }
+//         if(time>=0){
+//             showTimeOnScreen(time);
+//             time--;
+//         }else{
+//             stopWork(answerSubmitBtn,nextQuestionBtn);
+//         }
+//     })
+// }
+
 function startQuiz(arrayQ,topic,timer,difficulty,totalQ){
     document.querySelector(".totalQ").innerText = totalQ;
     let currQu = parseInt(document.querySelector(".currQ").innerText);
@@ -532,9 +618,9 @@ function startQuiz(arrayQ,topic,timer,difficulty,totalQ){
             return quizObj;
         }
     });
-    console.log(quizData);
+    // console.log(quizData);
     // marks
-    const marks = [];
+    const marks = {};
     if(currQu <= totalQ){
         fillQnaOneByOne(quizData,currQu,totalQ);
     }
@@ -543,27 +629,33 @@ function startQuiz(arrayQ,topic,timer,difficulty,totalQ){
     }
     let currentQnA = quizData[currQu-1];
     
+    
+    // console.log(time,typeof time)
+    
+    // startTimer(time,answerSubmitBtn,nextQuestionBtn,marks,currQu);
     let selectedOptions = []
     // answer selection logic
     answereBoxs.forEach((ansDiv,index)=>{
         
         ansDiv.addEventListener('click',()=>{
-            answereBoxs.forEach((ansDiv)=>{ansDiv.classList.remove("selected")});
+            answereBoxs.forEach((ansDiv)=>{ansDiv.classList.remove("selected");
+            ansDiv.classList.remove('checked');
+        });
 
             ansDiv.classList.toggle('selected');
             // get selected option
             selectedOptions.push(index)
-            console.log(selectedOptions)
-            answerSubmitFunction(selectedOptions,currentQnA,marks);
+            // console.log(selectedOptions)
+            console.log("value sned",currQu)
+            answerSubmitFunction(selectedOptions,currentQnA,marks,currQu);
             
         });
-        ansDiv.classList.remove('selected');
+        // ansDiv.classList.remove('selected');
     });
     
     // 
     // next btn logic
-    let answerSubmitBtn = document.querySelector('#answerSubmitBtn');
-    let nextQuestionBtn = document.querySelector("#nextQuestionBtn");
+    
         nextQuestionBtn.addEventListener("click", () => {
             answereBoxs.forEach((ansDiv)=>{
             
@@ -572,12 +664,12 @@ function startQuiz(arrayQ,topic,timer,difficulty,totalQ){
             });
             currQu += 1;
             if(currQu <= totalQ){
-                nextQuestionBtn.classList.toggle('next');
-                answerSubmitBtn.classList.toggle('next');
+                nextQuestionBtn.style.display="none";
+                answerSubmitBtn.style.display="block";
                 fillQnaOneByOne(quizData,currQu,totalQ);
             }
             else{
-                showFinalResult(marks);
+                showFinalResult(marks,totalQ);
                 
             }
             
@@ -590,51 +682,19 @@ function startQuiz(arrayQ,topic,timer,difficulty,totalQ){
     // });  
     
 }
-function answerSubmitFunction(selectedOptions,currentQnA,marks){
 
-    let selectedOption = selectedOptions[selectedOptions.length-1];
-    console.log("Insdie function", selectedOption)
-    // console.log(typeof selectedOption)
-    // getting the answer btn
-    let answerSubmitBtn = document.querySelector('#answerSubmitBtn');
-    let nextQuestionBtn = document.querySelector("#nextQuestionBtn");
-    let answereBoxs = document.querySelectorAll(".ans");
-
-    if(selectedOption !== undefined){
-        answerSubmitBtn.removeAttribute('disabled');
-    }
-    // answer submisstion logic
-   let correctAnswer = currentQnA.correctAnswer;
-    answerSubmitBtn.addEventListener("click", () => {
-        console.log("in func now",selectedOption)
-        if(selectedOption === correctAnswer){
-            marks.push(1);
-            answereBoxs[selectedOption].classList.remove('selected');
-        }
-        else{
-            marks.push(0)
-            answereBoxs[selectedOption].classList.add('wrong');
-            answereBoxs[correctAnswer].classList.add('correct');
-            answereBoxs[selectedOption].classList.remove('selected');
-        }
-        selectedOption = undefined;
-    //  when all checks done hide the submit btn
-    // and show the next Btn
-    answerSubmitBtn.classList.toggle('next');
-    nextQuestionBtn.classList.toggle('next');
-    });
-}
-function showFinalResult(marks){
+function showFinalResult(marks,totalQ){
     let quizQna = document.querySelector(".quizQna");
     let finalResult = document.querySelector(".finalResult");
     let totalScore = 0; 
-    for (let i=0 ;i<marks.length;i++){
-        totalScore += marks[i];
+    console.log("joker",marks.length);
+    for(let key in marks){
+        totalScore += marks[key];
     }
     quizQna.classList.toggle('hide');
     finalResult.classList.toggle('hide');
     let yourScore = document.querySelector(".yourScore");
-    yourScore.innerText = `${totalScore}/${marks.length}`;
+    yourScore.innerText = `${totalScore}/${totalQ}`;
     let restartBtn = document.getElementById("restartBtn");
     restartBtn.addEventListener('click',()=>{
         location.reload();

@@ -363,10 +363,14 @@ select{
   .btn:disabled {
     background: #576081;
     cursor: not-allowed;
+  } 
+  #answerSubmitBtn .hideBtn{
+    display: none !important;
   }
-  .btn.next {
+  #nextQuestionBtn.btn.next {
     display: none;
   }
+
   
 /* Final result logic */
 .quizContainer>.finalResult{
