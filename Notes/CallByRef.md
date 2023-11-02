@@ -18,11 +18,8 @@ PI = “4”;  //error
 
 - All non-primitive data types(like Objects,Map,Set,Arrays) in JS are stored in heap
 
-![image](https://github.com/yghugardare/JS-projects/assets/117991996/91c914a8-e13d-4929-ae3a-4d0a14503cb3)
+![image](https://github.com/yghugardare/JS-projects/assets/117991996/b5f70a83-ab05-4664-82e9-dc5a6760c71f)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5b575490-8250-4b46-8f0e-2f41d0afe315/Untitled.png)
+![image](https://github.com/yghugardare/JS-projects/assets/117991996/b99e3e7a-d2c9-4d21-8df1-8d7f47d17d57)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46ef82e5-dafb-4f74-b3bc-a146c63d62b4/Untitled.png)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/583a5942-b7d7-40b7-8b90-6c3f8aa8330d/Untitled.png)
 
