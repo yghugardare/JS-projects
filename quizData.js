@@ -1,4 +1,4 @@
-const fiveQuizData = [
+const fiveQ = [
     // Easy DSA Questions
     {
         question: "What does 'LIFO' stand for in data structures?",
@@ -358,7 +358,7 @@ const fiveQuizData = [
     difficulty: "hard"
 }
 ];
-const tenQuizData = [
+const tenQ = [
     // Easy DSA Questions
     {
         question: "What does 'LIFO' stand for in data structures?",
@@ -1061,8 +1061,8 @@ const tenQuizData = [
 }
 ];
 export {
-    fiveQuizData,
-    tenQuizData
+    fiveQ,
+    tenQ
 }
 
 
