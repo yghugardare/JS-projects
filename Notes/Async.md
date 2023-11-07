@@ -9,3 +9,19 @@
 ## async code
 
 ![image](https://github.com/yghugardare/JS-projects/assets/117991996/16cb013b-e443-4f06-a943-1fb0f9fd6bbb)
+
+## what is a callback? 
+It is a function which is passed as an argument to anaother function
+```javascript
+
+const callMe(param){
+    console.log("I am called with "+ param);
+}
+function call(device,func){
+    console.log("Call initiated!");
+    func(device);
+}
+call("mobile",callMe);
+
+
+```
