@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(6, 6, 6); color: white;">
+    <h1>JS </h1>
+
+    <script>
+        let promiseFour = new Promise(function(resolve,reject){
+            // async db call
+            setTimeout(()=>{
+                let error = false;
+                if(!error){
+                    resolve({username:"yash",mail:"ygh@gmail.com"});
+                }else{
+                    reject({name:"gadbad",code:6969});
+                }
+            },5000)
+        });
+        async function consumePromiseFour(){
+            try{
+                let result = await promiseFour;
+                console.log("result : ",result);
+                let userName = result.username;
+                // this will work
+                console.log("his name is ",userName)
+                
+            }catch(error){
+                console.log(`Error ${error.code}: ${error.name}`);
+            }
+        }
+        // call the async function
+        consumePromiseFour();
+
+        
+
+// console.log("user name is",userName) // this will give me a promise instead of a name
+    </script>
+</body>
+</html>
