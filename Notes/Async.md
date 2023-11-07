@@ -32,6 +32,8 @@ call("mobile",callMe);
     2. fulfilled
     3. rejected
 
+![image](https://github.com/yghugardare/JS-projects/assets/117991996/7298e3ec-39a3-4f6e-98a0-860c3f26cd11)
+
 ```javascript
 const promiseOne = new Promise(function(resolve,reject){
 // do any async task like db calls
