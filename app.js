@@ -459,3 +459,70 @@ dictBtn.addEventListener('click',fetchWordMeaning);
 
 // Dictionary app ends here
 /*--------------------------------------------------------------------------------------------------------*/
+// tic tac toe here
+const cells = document.querySelectorAll(".cell");
+let turn = document.querySelector('.turn');
+let message = document.querySelector('.message');
+let resetGame = document.getElementById('resetGame');
+// create a new array to cherckfor winning condition
+const obj = new Array(9);
+obj.fill(null);
+let currentPlayer = "X";
+let isGameOver = false;
+cells.forEach((cell)=>{
+    cell.innerHTML = "";
+    cell.addEventListener('click',function(){
+        if(isGameOver===false && cell.innerHTML===""){
+            cell.innerHTML = currentPlayer;
+            obj[Number(cell.id)] = currentPlayer
+            checkWin();
+            checkTurn();
+            checkDraw();
+            
+        }
+    })
+});
+function checkTurn(){
+    if(currentPlayer==='X'){
+        currentPlayer='O';
+    }else{
+        currentPlayer = 'X'
+    }
+    turn.innerText=currentPlayer;
+}
+const winningCombinations = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+]
+function checkWin(){
+    for(let combination of winningCombinations){
+        // array destructring
+        const [a,b,c] = combination;
+        if(obj[a]&&obj[a] === obj[b] && obj[a] === obj[c]){
+            isGameOver = true;
+            message.innerText = `${currentPlayer} has won🎉`;
+            cells.forEach(cell=>{
+               if(Number(cell.id) === a || Number(cell.id)=== b || Number(cell.id)===c){
+                    cell.classList.add('winStyle');
+               } 
+            })
+        }
+    }
+}
+function checkDraw(){
+    if(obj.includes(null)===false && isGameOver===false){
+        isGameOver =true;
+        message.innerText = "It is a draw😉";
+    }
+}
+resetGame.addEventListener('click',()=>{
+    location.reload();
+})
+
+ 

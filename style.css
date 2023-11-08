@@ -454,3 +454,46 @@ select{
 .dictH2{
     color: var(--btnColor);
 }
+/* dictionary related stylings ends here */
+/* tic tac toe styling here */
+.ticTacContainer{
+    position: relative;
+    overflow: auto;
+    max-height:524px ;
+    top: 12vh;
+    max-width: 780px;
+    margin: 0 auto;
+    background-color:var(--secondarybgColor);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.board{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+}
+.cell{
+    display: grid;
+    place-items: center;
+    font-size: 3.5rem;
+    color: var(--bgColor);
+    width:100px;
+    height: 100px;
+    background-color: var(--inputBoxColor);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.cell:hover{
+    background-color: var(--btnHoverColor);
+}
+.winStyle{
+    background-color: var(--btnHoverColor);
+    color: white;
+}
