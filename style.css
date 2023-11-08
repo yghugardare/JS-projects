@@ -105,6 +105,9 @@ section{
     top: 12vh;
 }
 /* Notes styling here */
+#notes{
+    /* border-bottom: 2px solid red; */
+}
 .notesContainer{
     position: relative;
     overflow: auto;
@@ -116,6 +119,7 @@ section{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    
 }
 .notesContainer>h1{
     text-align: center;
@@ -245,7 +249,7 @@ select{
     outline: none;
     cursor: pointer;
     background-color: var(--inputBoxColor);
-    border: 2px solid var(--btnColor);
+    border: 2px solid var(--btnColorf);
     border-radius:5px ;
     font-weight: 600;
 }
@@ -253,8 +257,8 @@ select{
 .quizContainer>.quizQna{
     display: grid;
     place-items: center;
-
-    height: 85vh;
+    row-gap: 15px;
+    height:100%;
     /* border: 1px solid lightcyan; */
     max-width: 686px;
     margin: 0 auto;
@@ -394,36 +398,8 @@ select{
         position:relative;
         top : 10vh;
     }
-    .quizContainer>.quizQna{
-        display: grid;
-        place-items: center;
-        row-gap: 0px;
-        height: 70vh;
-    }
-    .answers{
-        position: relative;
-        top: -6vh;
-    }
     
-    .questions{
-        /* border:2px solid red; */
-        width: 100%;
-        height: 50px;
-        position: relative;
-        top: -6vh;
     
-    }
-    .questions>h2{
-        padding:0 10px;
-    }
-    .questions>p{
-        padding:0px 10px;
-        height: 30px;
-    }
-    .timer{
-        width: 100%;
-        height: 20px; 
-    }
     .quizContainer>.finalResult{
         position: relative;
         top: 7vh;
