@@ -394,44 +394,68 @@ function showFinalResult(marks,totalQ){
 // Dictionary App starts here(
 let dictInput = document.querySelector("#dictInput");
 let dictBtn = document.querySelector("#dictBtn");
-let wordMainBody = document.querySelector(".wordMainBody");
-let pronounciation;
+let displayWordDetails = document.querySelector(".displayWordDetails");
+
+
 async function fetchWordMeaning(){
     try{
         let word = dictInput.value;
         let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         let resultObj = await response.json();
-        wordMainBody.innerHTML = 
+        displayWordDetails.innerHTML = 
         `
+        <div class="wordHeading">
+        <div class="onlyWord">
+            <h2 class="dictH2">${resultObj[0]?.word}</h2>
+            <p>${resultObj[0]?.meanings[0]?.partOfSpeech}</p>
+        </div>
+        <button class="wordSound">🔊</button>
+    </div>
+    <hr/>
+    <div class="wordMainBody">
         <div class="wordMeaning">
-        <h3>Meaning-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.definition}</p>
-    </div>
-    <div class="wordMeaning">
-        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet consectetur  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo officiis dolores illum blanditiis amet deserunt aut, necessitatibus ab sint sunt deleniti vel. Modi placeat eius neque at. Ab minus pariatur nostrum! Illum, atque nemo sequi a totam tenetur eum eligendi odit, voluptate debitis odio, harum omnis neque? Placeat, cupiditate et est, perspiciatis iusto sed voluptatum nulla molestiae harum libero quaerat illum excepturi maiores. Quibusdam nihil autem libero. Quidem facere sunt placeat consequuntur vitae nam maxime recusandae facilis, dolore odit tempora, molestias voluptatibus ut quibusdam corporis animi repudiandae iure laudantium incidunt error nemo! Quia neque harum quisquam cumque animi consectetur ducimus!adipisicing elit. Natus, quisquam?</p>
-    </div>
-    <div class="wordMeaning">
-        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, quisquam?</p>
-    </div>
-    <div class="wordMeaning">
-        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fugit nobis, distinctio facere ab officia qui eum itaque! Ad minima vitae officia, molestiae veniam beatae aliquid repellendus tempore cumque maxime laboriosam quis pariatur voluptate quo, ex ducimus optio id consequatur neque. Ratione deleniti voluptatum cum quos quam, hic veniam placeat! consectetur adipisicing elit. Natus, quisquam?</p>
+            <h3>Meaning-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.definition}</p>
+        </div>
+        <div class="wordMeaning">
+            <h3>Example-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.example === undefined?"No example      ":resultObj[0]?.meanings[0]?.definitions[0]?.example}</p>
+        </div>
+        <div class="wordMeaning">
+            <h3>Synonym-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.synonyms[0] === undefined?"Not Found":resultObj[0]?.meanings[0]?.definitions[0]?.synonyms[0]}</p>
+        </div>
+        <div class="wordMeaning">
+            <h3 >Meaning-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.antonyms[0] === undefined?"Not Found":resultObj[0]?.meanings[0]?.definitions[0]?.antonyms[0]}</p>
+        </div>
     </div>
         `
-        console.log(resultObj);
-        console.log("Word- ",resultObj[0]?.word);
-        console.log("POS-",resultObj[0]?.meanings[0]?.partOfSpeech);
-        console.log("meaning-",resultObj[0]?.meanings[0]?.definitions[0]?.definition);
-        console.log("Synonym-",resultObj[0]?.meanings[0]?.definitions[0]?.synonyms[0]);
-        console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.antonyms[0]);
-        console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.example);
-        console.log("sound url - ",resultObj[0]?.phonetics[0]?.audio)
+        let pronounciation= new Audio(`${resultObj[0]?.phonetics[0]?.audio}`);
+        let wordSound = document.querySelector('.wordSound');
+        wordSound.addEventListener('click', ()=>{
+            if(resultObj[0]?.phonetics[0]?.audio){
+            pronounciation.play();
+            }else{
+                alert("Sorry!No sound available for this word")
+            }
+        })
+        // console.log(pronounciation);
+        
+        // console.log(resultObj);
+        // console.log("Word- ",resultObj[0]?.word);
+        // console.log("POS-",resultObj[0]?.meanings[0]?.partOfSpeech);
+        // console.log("meaning-",resultObj[0]?.meanings[0]?.definitions[0]?.definition);
+        // console.log("Synonym-",resultObj[0]?.meanings[0]?.definitions[0]?.synonyms[0]);
+        // console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.antonyms[0]);
+        // console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.example);
+        
+        // console.log("sound url - ",)
         dictInput.value = "";
     }catch(err){
-        console.log("Error:",err);
+        alert("Error",err);
     }
 }
-
-dictBtn.addEventListener('click',fetchWordMeaning)
-
+function sayWord(){
+    pronounciation.play();
+}
+dictBtn.addEventListener('click',fetchWordMeaning);
 
 // Dictionary app ends here
 /*--------------------------------------------------------------------------------------------------------*/
