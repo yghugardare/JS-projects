@@ -389,3 +389,49 @@ function showFinalResult(marks,totalQ){
         location.reload();
     })
 }
+// Quiz app ends here
+/*--------------------------------------------------------------------------------------------------------*/
+// Dictionary App starts here(
+let dictInput = document.querySelector("#dictInput");
+let dictBtn = document.querySelector("#dictBtn");
+let wordMainBody = document.querySelector(".wordMainBody");
+let pronounciation;
+async function fetchWordMeaning(){
+    try{
+        let word = dictInput.value;
+        let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        let resultObj = await response.json();
+        wordMainBody.innerHTML = 
+        `
+        <div class="wordMeaning">
+        <h3>Meaning-</h3><p>${resultObj[0]?.meanings[0]?.definitions[0]?.definition}</p>
+    </div>
+    <div class="wordMeaning">
+        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet consectetur  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo officiis dolores illum blanditiis amet deserunt aut, necessitatibus ab sint sunt deleniti vel. Modi placeat eius neque at. Ab minus pariatur nostrum! Illum, atque nemo sequi a totam tenetur eum eligendi odit, voluptate debitis odio, harum omnis neque? Placeat, cupiditate et est, perspiciatis iusto sed voluptatum nulla molestiae harum libero quaerat illum excepturi maiores. Quibusdam nihil autem libero. Quidem facere sunt placeat consequuntur vitae nam maxime recusandae facilis, dolore odit tempora, molestias voluptatibus ut quibusdam corporis animi repudiandae iure laudantium incidunt error nemo! Quia neque harum quisquam cumque animi consectetur ducimus!adipisicing elit. Natus, quisquam?</p>
+    </div>
+    <div class="wordMeaning">
+        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, quisquam?</p>
+    </div>
+    <div class="wordMeaning">
+        <h3>Meaning-</h3><p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fugit nobis, distinctio facere ab officia qui eum itaque! Ad minima vitae officia, molestiae veniam beatae aliquid repellendus tempore cumque maxime laboriosam quis pariatur voluptate quo, ex ducimus optio id consequatur neque. Ratione deleniti voluptatum cum quos quam, hic veniam placeat! consectetur adipisicing elit. Natus, quisquam?</p>
+    </div>
+        `
+        console.log(resultObj);
+        console.log("Word- ",resultObj[0]?.word);
+        console.log("POS-",resultObj[0]?.meanings[0]?.partOfSpeech);
+        console.log("meaning-",resultObj[0]?.meanings[0]?.definitions[0]?.definition);
+        console.log("Synonym-",resultObj[0]?.meanings[0]?.definitions[0]?.synonyms[0]);
+        console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.antonyms[0]);
+        console.log("Antonym-",resultObj[0]?.meanings[0]?.definitions[0]?.example);
+        console.log("sound url - ",resultObj[0]?.phonetics[0]?.audio)
+        dictInput.value = "";
+    }catch(err){
+        console.log("Error:",err);
+    }
+}
+
+dictBtn.addEventListener('click',fetchWordMeaning)
+
+
+// Dictionary app ends here
+/*--------------------------------------------------------------------------------------------------------*/
